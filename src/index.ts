@@ -36,7 +36,7 @@ server.tool(
   {
     limit: z.number().min(1).max(100).optional().describe("Max events to return (default 20)"),
     cursor: z.string().optional().describe("Pagination cursor from previous response"),
-    name: z.string().optional().describe("Filter by event name (e.g. 'application/sync.single')"),
+    name: z.string().optional().describe("Filter by event name (e.g. 'app/user.created')"),
     received_after: z.string().optional().describe("Only events received after this time (ISO 8601). Defaults to 7 days ago"),
     received_before: z.string().optional().describe("Only events received before this time (ISO 8601). Defaults to now"),
   },
@@ -108,7 +108,7 @@ server.tool(
   "list_functions",
   "List all functions registered for a given app.",
   {
-    appName: z.string().describe("The app name/slug (e.g. 'xylo-workflows')"),
+    appName: z.string().describe("The app name/slug (e.g. 'my-app')"),
   },
   async ({ appName }) => {
     const result = await listFunctions(getSigningKey(), appName);
